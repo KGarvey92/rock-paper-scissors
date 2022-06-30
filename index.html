@@ -1,1 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock, Paper, Scissors</title>
+</head>
+<body>
+    <script>
+        // Create computerPlay function:
+        function computerPlay() {
+            // Generate a random number between 0 - 1
+            let randomNumber = Math.random();
+            // Assign each possible choice an equal range between 0 - 1
+            if (randomNumber > 0.666666) {
+                return 'rock';
+            }
+            else if (randomNumber < 0.333333) {
+                return 'paper';
+            }
+            else {
+                return 'scissors';
+            }
+        }
 
+        // Create playerSelection function:
+        function promptPlayer() {
+            // check if input is valid, if not then prompt.
+            let playerSelection; 
+            while (playerSelection == undefined) {
+                // prompt user to type selection
+                let input = prompt('Choose rock, paper or scissors:');
+                // make the input case insenstive
+                if (input != null){
+                    input = input.toLowerCase();
+                }
+                // assign playerSelection if valid
+                if (input === 'rock' || input === 'paper' || input === 'scissors') {
+                    playerSelection = input;
+                }
+            }
+            return playerSelection;
+        }
+        // Create playRound function:
+        function playRound(playerSelection, computerSelection) {
+            // List outcomes
+            if (playerSelection === 'paper') {
+                if (computerSelection === 'paper') {
+                    return "It's a draw, you both chose paper."
+                }
+                else if (computerSelection === 'rock') {
+                    return "You win! Paper beats rock."
+                }
+                else {
+                    return "You lose. Scissors beats paper."
+                }
+            }
+            else if (playerSelection === 'rock') {
+                if (computerSelection === 'rock') {
+                    return "It's a draw, you both chose rock."
+                }
+                else if (computerSelection === 'scissors') {
+                    return "You win! Rock beats scissors."
+                }
+                else {
+                    return "You lose. Paper beats rock."
+                }
+            }
+            else {
+                if (computerSelection === 'scissors') {
+                    return "It's a draw, you both chose scissors."
+                }
+                else if (computerSelection === 'paper') {
+                    return "You win! Scissors beats paper."
+                }
+                else {
+                    return "You lose. Rock beats scissors."
+                }
+            }
+        }
+        // Create game function:
+        function game() {
+            let cpuScore = 0;
+            let playerScore = 0;
+            let computerSelection;
+            let playerSelection;
+            for (let i = 0; i < 5; i++) {
+                computerSelection = computerPlay();
+                playerSelection = promptPlayer();
+                roundResult = playRound(playerSelection, computerSelection);
+                console.log(roundResult);
+                if (roundResult.slice(0, 8) === "You win!") {
+                    playerScore++;
+                }
+                else if (roundResult.slice(0, 9) === "You lose."){
+                    cpuScore++;
+                }
+                console.log(`The score is ${playerScore} - ${cpuScore}`);
+
+            }
+            if (playerScore > cpuScore) {
+                console.log('You were the winner!');
+            }
+            else if (cpuScore > playerScore) {
+                console.log('Sorry, you lost.');
+            }
+            else {
+                console.log('It ends in a tie.');
+            }
+        }
+        game();
+    </script>
+</body>
+</html>
