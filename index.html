@@ -7,9 +7,9 @@
     <title>Rock, Paper, Scissors</title>
 </head>
 <body>
-    <button>Rock</button>
-    <button>Paper</button>
-    <button>Scissors</button>
+    <button id="rock">Rock</button>
+    <button id="paper">Paper</button>
+    <button id="scissors">Scissors</button>
     <script>
         // Create computerPlay function:
         function computerPlay() {
@@ -84,37 +84,26 @@
                 }
             }
         }
-        // Create game function:
-        // function game() {
-        //     let cpuScore = 0;
-        //     let playerScore = 0;
-        //     let computerSelection;
-        //     let playerSelection;
-        //     for (let i = 0; i < 5; i++) {
-        //         computerSelection = computerPlay();
-        //         playerSelection = promptPlayer();
-        //         roundResult = playRound(playerSelection, computerSelection);
-        //         console.log(roundResult);
-        //         if (roundResult.slice(0, 8) === "You win!") {
-        //             playerScore++;
-        //         }
-        //         else if (roundResult.slice(0, 9) === "You lose."){
-        //             cpuScore++;
-        //         }
-        //         console.log(`The score is ${playerScore} - ${cpuScore}`);
 
-        //     }
-        //     if (playerScore > cpuScore) {
-        //         console.log('You were the winner!');
-        //     }
-        //     else if (cpuScore > playerScore) {
-        //         console.log('Sorry, you lost.');
-        //     }
-        //     else {
-        //         console.log('It ends in a tie.');
-        //     }
-        // }
-        // game();
+        // add event listeners to the buttons
+        const rock = document.querySelector('#rock');
+        console.log(rock);
+        rock.addEventListener('click', () => {
+            console.log(playRound('rock'));
+        }) ;
+
+        const paper = document.querySelector('#paper');
+        console.log(paper);
+        paper.addEventListener('click', () => {
+            console.log(playRound('paper'));
+        }) ;
+
+        const scissors = document.querySelector('#scissors');
+        console.log(scissors);
+        scissors.addEventListener('click', () => {
+            console.log(playRound('scissors'));
+        }) ;
+
     </script>
 </body>
 </html>
