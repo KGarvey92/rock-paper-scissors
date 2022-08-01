@@ -10,6 +10,7 @@
     <button id="rock">Rock</button>
     <button id="paper">Paper</button>
     <button id="scissors">Scissors</button>
+    <div id="resultDisplay"></div>
     <script>
         // Create computerPlay function:
         function computerPlay() {
@@ -84,25 +85,29 @@
                 }
             }
         }
+        // allow for displaying results.
+        const resultDisplay = document.querySelector('#resultDisplay');
 
         // add event listeners to the buttons
         const rock = document.querySelector('#rock');
         console.log(rock);
         rock.addEventListener('click', () => {
-            console.log(playRound('rock'));
+            resultDisplay.textContent = `${playRound('rock')}`;
         }) ;
 
         const paper = document.querySelector('#paper');
         console.log(paper);
         paper.addEventListener('click', () => {
-            console.log(playRound('paper'));
+            resultDisplay.textContent = `${playRound('paper')}`;
         }) ;
 
         const scissors = document.querySelector('#scissors');
         console.log(scissors);
         scissors.addEventListener('click', () => {
-            console.log(playRound('scissors'));
+            resultDisplay.textContent= `${playRound('scissors')}`;
         }) ;
+
+
 
     </script>
 </body>
