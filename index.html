@@ -46,7 +46,9 @@
             return playerSelection;
         }
         // Create playRound function:
-        function playRound(playerSelection, computerSelection) {
+        function playRound(playerSelection) {
+            // Make computer play
+            let computerSelection = computerPlay();
             // List outcomes
             if (playerSelection === 'paper') {
                 if (computerSelection === 'paper') {
