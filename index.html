@@ -11,7 +11,11 @@
     <button id="paper">Paper</button>
     <button id="scissors">Scissors</button>
     <div id="resultDisplay"></div>
+    <div id="scoreDisplay"></div>
     <script>
+        // Initialise player and cpu scores
+        let playerScore = 0;
+        let cpuScore = 0;
         // Create computerPlay function:
         function computerPlay() {
             // Generate a random number between 0 - 1
@@ -56,9 +60,11 @@
                     return "It's a draw, you both chose paper."
                 }
                 else if (computerSelection === 'rock') {
+                    playerScore ++;
                     return "You win! Paper beats rock."
                 }
                 else {
+                    cpuScore ++;
                     return "You lose. Scissors beats paper."
                 }
             }
@@ -67,9 +73,11 @@
                     return "It's a draw, you both chose rock."
                 }
                 else if (computerSelection === 'scissors') {
+                    playerScore ++;
                     return "You win! Rock beats scissors."
                 }
                 else {
+                    cpuScore ++;
                     return "You lose. Paper beats rock."
                 }
             }
@@ -78,9 +86,11 @@
                     return "It's a draw, you both chose scissors."
                 }
                 else if (computerSelection === 'paper') {
+                    playerScore ++;
                     return "You win! Scissors beats paper."
                 }
                 else {
+                    cpuScore ++;
                     return "You lose. Rock beats scissors."
                 }
             }
@@ -88,26 +98,37 @@
         // allow for displaying results.
         const resultDisplay = document.querySelector('#resultDisplay');
 
+        // Access div to track score
+        const scoreDisplay = document.querySelector('#scoreDisplay');
+
         // add event listeners to the buttons
         const rock = document.querySelector('#rock');
         console.log(rock);
         rock.addEventListener('click', () => {
             resultDisplay.textContent = `${playRound('rock')}`;
+            // Update score based on results
+            scoreDisplay.textContent = `The score is ${playerScore} - ${cpuScore}.`;
         }) ;
 
         const paper = document.querySelector('#paper');
         console.log(paper);
         paper.addEventListener('click', () => {
             resultDisplay.textContent = `${playRound('paper')}`;
+            // Update score based on results
+            scoreDisplay.textContent = `The score is ${playerScore} - ${cpuScore}.`;
         }) ;
 
         const scissors = document.querySelector('#scissors');
         console.log(scissors);
         scissors.addEventListener('click', () => {
             resultDisplay.textContent= `${playRound('scissors')}`;
+            // Update score based on results
+            scoreDisplay.textContent = `The score is ${playerScore} - ${cpuScore}.`;
         }) ;
 
+        // Create conditional to alert once player or cpu has 5 points.
 
+        // After alert reset the counter
 
     </script>
 </body>
