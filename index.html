@@ -7,11 +7,15 @@
     <title>Rock, Paper, Scissors</title>
 </head>
 <body>
+    <h1>Rock, Paper, Scissors</h1>
+    <h2>First to 5 wins!</h2>
     <button id="rock">Rock</button>
     <button id="paper">Paper</button>
     <button id="scissors">Scissors</button>
-    <div id="resultDisplay"></div>
-    <div id="scoreDisplay"></div>
+    <div id="resultDisplay">Choose your first play.</div>
+    <div id="scoreDisplay">The game has yet to start.</div>
+    <div><button id="resetButton">Reset</button></div>
+    <div id="winnerDisplay"></div>
     <script>
         // Initialise player and cpu scores
         let playerScore = 0;
@@ -95,41 +99,69 @@
                 }
             }
         }
-        // allow for displaying results.
+        // Access div for displaying results.
         const resultDisplay = document.querySelector('#resultDisplay');
 
         // Access div to track score
         const scoreDisplay = document.querySelector('#scoreDisplay');
 
+        // Access div to declare winner.
+        const winnerDisplay = document.querySelector('#winnerDisplay');
+
         // add event listeners to the buttons
         const rock = document.querySelector('#rock');
-        console.log(rock);
         rock.addEventListener('click', () => {
             resultDisplay.textContent = `${playRound('rock')}`;
             // Update score based on results
             scoreDisplay.textContent = `The score is ${playerScore} - ${cpuScore}.`;
+            checkWinner();
         }) ;
 
         const paper = document.querySelector('#paper');
-        console.log(paper);
         paper.addEventListener('click', () => {
             resultDisplay.textContent = `${playRound('paper')}`;
             // Update score based on results
             scoreDisplay.textContent = `The score is ${playerScore} - ${cpuScore}.`;
+            checkWinner();
         }) ;
 
         const scissors = document.querySelector('#scissors');
-        console.log(scissors);
         scissors.addEventListener('click', () => {
-            resultDisplay.textContent= `${playRound('scissors')}`;
+            resultDisplay.textContent = `${playRound('scissors')}`;
             // Update score based on results
             scoreDisplay.textContent = `The score is ${playerScore} - ${cpuScore}.`;
+            checkWinner();
         }) ;
 
-        // Create conditional to alert once player or cpu has 5 points.
+        // add eventListener for reset button
+        const resetButton = document.querySelector('#resetButton');
+        resetButton.addEventListener('click', () => {
+            playerScore = 0;
+            cpuScore = 0;
+            resultDisplay.textContent = 'Choose your first play.';
+            scoreDisplay.textContent = 'The game has yet to start.';
+            winnerDisplay.textContent = '';
+            rock.removeAttribute('disabled');
+            paper.removeAttribute('disabled');
+            scissors.removeAttribute('disabled');
+        })
+        // Create function to check for winner.
+        function checkWinner(){
+            if (playerScore === 5) {
+                declareWinner('You are', cpuScore);
+            }
+            else if (cpuScore === 5) {
+                declareWinner('The computer is', playerScore);
+            }
+        }
+        // Create function to declare winner.
+        function declareWinner(winner, loserScore) {
+            winnerDisplay.textContent = `${winner} the winner. The final score was 5 - ${loserScore}`;
+            rock.setAttribute('disabled', '');
+            paper.setAttribute('disabled', '');
+            scissors.setAttribute('disabled', '');
 
-        // After alert reset the counter
-
+        }
     </script>
 </body>
 </html>
